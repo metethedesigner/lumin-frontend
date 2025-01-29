@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../features/usersSlice';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react'; // useState ekledik
+import { useEffect, useState } from 'react'; 
 
 interface HeaderProps {
   username: string;

@@ -3,22 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchReservations, setPage } from '../../features/reservationsSlice';
 import {
   Container,
-  Typography,
   Box,
   Pagination,
   CircularProgress,
   Alert,
-  Card,
 } from '@mui/material';
 import { RootState, AppDispatch } from '../../store/store';
 import ReservationModal from '../../components/ReservationModal';
 import { Reservation } from '../../types/reservation.type';
-import { ReservationCard } from '@/components/ReservationCard';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import { setUser } from '@/features/usersSlice';
-import DateFilter from '@/components/DateFilter/DateFilter';
-import { Hero } from '@/components/Hero/Hero';
+import { ReservationCard } from '../../components/ReservationCard';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import { setUser } from '../../features/usersSlice';
+import DateFilter from '../../components/DateFilter/DateFilter';
+import { Hero } from '../../components/Hero/Hero';
 
 export default function Home() {
   const dispatch: AppDispatch = useDispatch();
@@ -40,9 +38,16 @@ export default function Home() {
       dispatch(setUser({ user: parsedUser }));
     }
 
-    // Rezervasyonları çek
     dispatch(fetchReservations({ startDate, endDate, page, limit })); 
-  }, [dispatch, page, startDate, endDate]);
+
+    const intervalId = setInterval(() => {
+      dispatch(fetchReservations({ startDate, endDate, page, limit }));
+    }, 10000); 
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [dispatch, page, startDate, endDate, limit]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     dispatch(setPage(value));

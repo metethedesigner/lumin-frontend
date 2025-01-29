@@ -1,4 +1,4 @@
-import { Reservation } from '@/types/reservation.type';
+import { Reservation } from '../../types/reservation.type';
 import { Card, Box, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
 

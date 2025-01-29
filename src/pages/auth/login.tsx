@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { TextField, Button, Box, Typography, Card, CardContent } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store/store';
-import { handleLogin } from '@/utils/auth';
+import { AppDispatch } from '../../store/store';
+import { handleLogin } from '../../utils/auth';
 import { motion } from 'framer-motion';
 
 export default function Login() {
